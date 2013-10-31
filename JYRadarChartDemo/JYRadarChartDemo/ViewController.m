@@ -25,8 +25,8 @@
 
 
     //notice: you should repeat the 1st value at last
-	NSArray *a1 = @[@(81), @(97), @(87), @(60),  @(65), @(77), @(81)];
-	NSArray *a2 = @[@(91), @(87), @(33), @(77),  @(78), @(96), @(91)];
+	NSArray *a1 = @[@(81), @(97), @(87), @(60), @(65), @(77), @(81)];
+	NSArray *a2 = @[@(91), @(87), @(33), @(77), @(78), @(96), @(91)];
 	p.dataSeries = @[a1, a2];
 	p.steps = 4;
 	p.backgroundColor = [UIColor whiteColor];
@@ -42,10 +42,12 @@
 	[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateData) userInfo:nil repeats:YES];
 
 
-	p2 = [[JYRadarChart alloc] initWithFrame:CGRectMake(0, 220, 220, 200)];
+	p2 = [[JYRadarChart alloc] initWithFrame:CGRectMake(10, 220, 220, 200)];
 	p2.drawPoints = YES;
-	p2.dataSeries = @[a2, a1];
-	p2.steps = 4;
+    NSArray *b1 = @[@(81), @(97), @(87), @(60), @(85), @(77), @(73), @(74), @(53), @(82), @(65), @(81)];
+	NSArray *b2 = @[@(91), @(87), @(43), @(77), @(78), @(96), @(51), @(65), @(77), @(55), @(84), @(91)];
+	p2.dataSeries = @[b1, b2];
+	p2.steps = 3;
 	p2.backgroundColor = [UIColor grayColor];
 //	[p2 setTitles:@[@"aaax", @"xxxx"]];
 //    p2.r = 100;
