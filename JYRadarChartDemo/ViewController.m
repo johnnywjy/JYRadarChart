@@ -24,11 +24,12 @@
 	p = [[JYRadarChart alloc] initWithFrame:CGRectMake(30, 20, 200, 200)];
 
 
-    //notice: you should repeat the 1st value at last
+	//notice: you should repeat the 1st value at last
 	NSArray *a1 = @[@(81), @(97), @(87), @(60), @(65), @(77), @(81)];
 	NSArray *a2 = @[@(91), @(87), @(33), @(77), @(78), @(96), @(91)];
 	p.dataSeries = @[a1, a2];
-	p.steps = 4;
+	p.steps = 0;
+    p.showStepText = YES;
 	p.backgroundColor = [UIColor whiteColor];
 	p.r = 60;
 	p.minValue = 20;
@@ -42,16 +43,27 @@
 	[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateData) userInfo:nil repeats:YES];
 
 
-	p2 = [[JYRadarChart alloc] initWithFrame:CGRectMake(10, 220, 220, 200)];
+
+	p2 = [[JYRadarChart alloc] initWithFrame:CGRectMake(10, 220, 280, 200)];
+	p2.centerPoint = CGPointMake(130, 100);
+	p2.showLegend = YES;
+	[p2 setTitles:@[@"a", @"b", @"c", @"d", @"e", @"f", @"g", @"h", @"i", @"j"]];
 	p2.drawPoints = YES;
-    NSArray *b1 = @[@(81), @(97), @(87), @(60), @(85), @(77), @(73), @(74), @(53), @(82), @(65), @(81)];
+    p2.attributes = @[@"Price",@"Value",@"Pressure",@"Height",@"Weight",@"Grade",
+                      @"Volume", @"Length", @"Size", @"Padding", @"Pages"];
+	NSArray *b1 = @[@(61), @(97), @(87), @(60), @(85), @(77), @(73), @(74), @(53), @(82), @(65), @(61)];
 	NSArray *b2 = @[@(91), @(87), @(43), @(77), @(78), @(96), @(51), @(65), @(77), @(55), @(84), @(91)];
-	p2.dataSeries = @[b1, b2];
-	p2.steps = 3;
+	NSArray *b3 = @[@(51), @(97), @(87), @(60), @(25), @(77), @(93), @(14), @(53), @(34), @(65), @(51)];
+	NSArray *b4 = @[@(11), @(87), @(65), @(77), @(55), @(84), @(43), @(77), @(78), @(96), @(51), @(11)];
+	NSArray *b5 = @[@(41), @(97), @(87), @(60), @(95), @(77), @(73), @(74), @(59), @(82), @(95), @(41)];
+	NSArray *b6 = @[@(61), @(96), @(51), @(65), @(77), @(87), @(43), @(70), @(78), @(55), @(44), @(61)];
+	NSArray *b7 = @[@(81), @(97), @(74), @(53), @(82), @(65), @(87), @(60), @(85), @(77), @(73), @(81)];
+	NSArray *b8 = @[@(91), @(84), @(43), @(67), @(78), @(96), @(47), @(55), @(67), @(55), @(51), @(91)];
+	NSArray *b9 = @[@(38), @(85), @(77), @(93), @(74), @(53), @(82), @(97), @(87), @(60), @(65), @(38)];
+	NSArray *b10 = @[@(31), @(87), @(43), @(37), @(78), @(96), @(51), @(65), @(17), @(55), @(54), @(31)];
+	p2.dataSeries = @[b1, b2, b3, b4, b5, b6, b7, b8, b9, b10];
+	p2.steps = 2;
 	p2.backgroundColor = [UIColor grayColor];
-//	[p2 setTitles:@[@"aaax", @"xxxx"]];
-//    p2.r = 100;
-//    p2.dataTitles=@[@"AAA",@"BBB",@"CCC",@"DDD",@"EEE",@"FFF"];
 	[self.view addSubview:p2];
 }
 
@@ -72,6 +84,8 @@
 	c[n - 1] = c[0];
 
 	p.dataSeries = @[a, b, c];
+    p.steps = arc4random()%6;
+    p.drawPoints = arc4random()%2?YES:NO;
 	[p setTitles:@[@"iPhone", @"pizza", @"hard drive"]];
 	[p setNeedsDisplay];
 }
