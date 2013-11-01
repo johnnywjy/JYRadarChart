@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSArray *dataSeries;
 @property (nonatomic, retain) NSArray *attributes;
 @property (nonatomic, assign) NSUInteger steps;
+@property (nonatomic, assign) CGPoint centerPoint;
 
 - (void)setTitles:(NSArray *)titles;
 

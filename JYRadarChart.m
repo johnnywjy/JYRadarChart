@@ -16,7 +16,6 @@
 
 @property (nonatomic, assign) NSUInteger numOfV;
 @property (nonatomic, strong) JYLegendView *legendView;
-@property (nonatomic, assign) CGPoint centerPoint;
 
 @end
 
