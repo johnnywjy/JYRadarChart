@@ -1,5 +1,5 @@
-JYRadarChart
-============
+# JYRadarChart [![Build Status](https://travis-ci.org/johnnywjy/JYRadarChart.png)](https://travis-ci.org/johnnywjy/JYRadarChart)
+
 
 an iOS open source Radar Chart implementation
 
