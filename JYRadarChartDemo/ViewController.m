@@ -23,12 +23,10 @@
 
 	p = [[JYRadarChart alloc] initWithFrame:CGRectMake(30, 20, 200, 200)];
 
-
-	//notice: you should repeat the 1st value at last
-	NSArray *a1 = @[@(81), @(97), @(87), @(60), @(65), @(77), @(81)];
-	NSArray *a2 = @[@(91), @(87), @(33), @(77), @(78), @(96), @(91)];
+	NSArray *a1 = @[@(81), @(97), @(87), @(60), @(65), @(77)];
+	NSArray *a2 = @[@(91), @(87), @(33), @(77), @(78), @(96)];
 	p.dataSeries = @[a1, a2];
-	p.steps = 0;
+	p.steps = 4;
     p.showStepText = YES;
 	p.backgroundColor = [UIColor whiteColor];
 	p.r = 60;
@@ -37,10 +35,11 @@
 	p.attributes = @[@"Attack", @"Defense", @"Speed", @"HP", @"MP", @"IQ"];
 	p.showLegend = YES;
 	[p setTitles:@[@"archer", @"footman"]];
+    [p setColors:@[[UIColor yellowColor],[UIColor purpleColor]]];
 	[self.view addSubview:p];
 
 
-	[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateData) userInfo:nil repeats:YES];
+//	[NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateData) userInfo:nil repeats:YES];
 
 
 
@@ -50,7 +49,7 @@
 	[p2 setTitles:@[@"a", @"b", @"c", @"d", @"e", @"f", @"g", @"h", @"i", @"j"]];
 	p2.drawPoints = YES;
     p2.attributes = @[@"Price",@"Value",@"Pressure",@"Height",@"Weight",@"Grade",
-                      @"Volume", @"Length", @"Size", @"Padding", @"Pages"];
+                      @"Volume", @"Length", @"Size", @"Padding", @"Pages",@"HAHAHA"];
 	NSArray *b1 = @[@(61), @(97), @(87), @(60), @(85), @(77), @(73), @(74), @(53), @(82), @(65), @(61)];
 	NSArray *b2 = @[@(91), @(87), @(43), @(77), @(78), @(96), @(51), @(65), @(77), @(55), @(84), @(91)];
 	NSArray *b3 = @[@(51), @(97), @(87), @(60), @(25), @(77), @(93), @(14), @(53), @(34), @(65), @(51)];
