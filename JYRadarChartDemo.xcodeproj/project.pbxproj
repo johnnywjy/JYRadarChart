@@ -20,10 +20,8 @@
 		A46481031822B03600FC04A7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46481021822B03600FC04A7 /* XCTest.framework */; };
 		A46481041822B03600FC04A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46480E01822B03600FC04A7 /* Foundation.framework */; };
 		A46481051822B03600FC04A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46480E41822B03600FC04A7 /* UIKit.framework */; };
-		A464810D1822B03600FC04A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A464810B1822B03600FC04A7 /* InfoPlist.strings */; };
-		A464810F1822B03600FC04A7 /* JYRadarChartDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A464810E1822B03600FC04A7 /* JYRadarChartDemoTests.m */; };
-		A46481281822B71500FC04A7 /* JYLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46481251822B71500FC04A7 /* JYLegendView.m */; };
-		A46481291822B71500FC04A7 /* JYRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A46481271822B71500FC04A7 /* JYRadarChart.m */; };
+		A464812F18238F6800FC04A7 /* JYLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = A464812C18238F6800FC04A7 /* JYLegendView.m */; };
+		A464813018238F6800FC04A7 /* JYRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A464812E18238F6800FC04A7 /* JYRadarChart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,13 +52,10 @@
 		A46480FB1822B03600FC04A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A46481011822B03600FC04A7 /* JYRadarChartDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JYRadarChartDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46481021822B03600FC04A7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A464810A1822B03600FC04A7 /* JYRadarChartDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JYRadarChartDemoTests-Info.plist"; sourceTree = "<group>"; };
-		A464810C1822B03600FC04A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A464810E1822B03600FC04A7 /* JYRadarChartDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYRadarChartDemoTests.m; sourceTree = "<group>"; };
-		A46481241822B71500FC04A7 /* JYLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JYLegendView.h; path = ../../JYLegendView.h; sourceTree = "<group>"; };
-		A46481251822B71500FC04A7 /* JYLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JYLegendView.m; path = ../../JYLegendView.m; sourceTree = "<group>"; };
-		A46481261822B71500FC04A7 /* JYRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JYRadarChart.h; path = ../../JYRadarChart.h; sourceTree = "<group>"; };
-		A46481271822B71500FC04A7 /* JYRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JYRadarChart.m; path = ../../JYRadarChart.m; sourceTree = "<group>"; };
+		A464812B18238F6800FC04A7 /* JYLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYLegendView.h; sourceTree = SOURCE_ROOT; };
+		A464812C18238F6800FC04A7 /* JYLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYLegendView.m; sourceTree = SOURCE_ROOT; };
+		A464812D18238F6800FC04A7 /* JYRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYRadarChart.h; sourceTree = SOURCE_ROOT; };
+		A464812E18238F6800FC04A7 /* JYRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYRadarChart.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				A46480E61822B03600FC04A7 /* JYRadarChartDemo */,
-				A46481081822B03600FC04A7 /* JYRadarChartDemoTests */,
 				A46480DF1822B03600FC04A7 /* Frameworks */,
 				A46480DE1822B03600FC04A7 /* Products */,
 			);
@@ -144,31 +138,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A46481081822B03600FC04A7 /* JYRadarChartDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				A464810E1822B03600FC04A7 /* JYRadarChartDemoTests.m */,
-				A46481091822B03600FC04A7 /* Supporting Files */,
-			);
-			path = JYRadarChartDemoTests;
-			sourceTree = "<group>";
-		};
-		A46481091822B03600FC04A7 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A464810A1822B03600FC04A7 /* JYRadarChartDemoTests-Info.plist */,
-				A464810B1822B03600FC04A7 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		A464812A1822B71B00FC04A7 /* JYRadarChart */ = {
 			isa = PBXGroup;
 			children = (
-				A46481241822B71500FC04A7 /* JYLegendView.h */,
-				A46481251822B71500FC04A7 /* JYLegendView.m */,
-				A46481261822B71500FC04A7 /* JYRadarChart.h */,
-				A46481271822B71500FC04A7 /* JYRadarChart.m */,
+				A464812B18238F6800FC04A7 /* JYLegendView.h */,
+				A464812C18238F6800FC04A7 /* JYLegendView.m */,
+				A464812D18238F6800FC04A7 /* JYRadarChart.h */,
+				A464812E18238F6800FC04A7 /* JYRadarChart.m */,
 			);
 			name = JYRadarChart;
 			sourceTree = "<group>";
@@ -260,7 +236,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A464810D1822B03600FC04A7 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,10 +246,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A464813018238F6800FC04A7 /* JYRadarChart.m in Sources */,
 				A46480FA1822B03600FC04A7 /* ViewController.m in Sources */,
 				A46480F11822B03600FC04A7 /* AppDelegate.m in Sources */,
-				A46481291822B71500FC04A7 /* JYRadarChart.m in Sources */,
-				A46481281822B71500FC04A7 /* JYLegendView.m in Sources */,
+				A464812F18238F6800FC04A7 /* JYLegendView.m in Sources */,
 				A46480ED1822B03600FC04A7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,7 +258,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A464810F1822B03600FC04A7 /* JYRadarChartDemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,14 +294,6 @@
 				A46480F61822B03600FC04A7 /* Base */,
 			);
 			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		A464810B1822B03600FC04A7 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A464810C1822B03600FC04A7 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
