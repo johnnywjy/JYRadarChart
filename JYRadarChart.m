@@ -62,6 +62,11 @@
 	self.legendView.titles = titles;
 }
 
+- (void)setColors:(NSArray *)colors{
+    self.legendView.colors = [colors mutableCopy];
+}
+
+
 - (void)setNeedsDisplay {
 	[super setNeedsDisplay];
 	[self.legendView sizeToFit];
@@ -71,13 +76,15 @@
 - (void)setDataSeries:(NSArray *)dataSeries {
 	_dataSeries = dataSeries;
 	_numOfV = [_dataSeries[0] count] - 1;
-	for (int i = 0; i < _dataSeries.count; i++) {
-		UIColor *color = [UIColor colorWithHue:(i * 5 % 17) / 17.0
-		                            saturation:1
-		                            brightness:1
-		                                 alpha:1];
-		self.legendView.colors[i] = color;
-	}
+    if (self.legendView.colors.count < _dataSeries.count) {
+        for (int i = 0; i < _dataSeries.count; i++) {
+            UIColor *color = [UIColor colorWithHue:(i * 5 % 17) / 17.0
+                                        saturation:1
+                                        brightness:1
+                                             alpha:1];
+            self.legendView.colors[i] = color;
+        }
+    }
 }
 
 - (void)layoutSubviews {

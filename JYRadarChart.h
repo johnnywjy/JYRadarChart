@@ -25,5 +25,6 @@
 @property (nonatomic, assign) CGPoint centerPoint;
 
 - (void)setTitles:(NSArray *)titles;
+- (void)setColors:(NSArray *)colors;
 
 @end
