@@ -75,7 +75,7 @@
 
 - (void)setDataSeries:(NSArray *)dataSeries {
 	_dataSeries = dataSeries;
-	_numOfV = [_dataSeries[0] count] - 1;
+	_numOfV = [_dataSeries[0] count];
     if (self.legendView.colors.count < _dataSeries.count) {
         for (int i = 0; i < _dataSeries.count; i++) {
             UIColor *color = [UIColor colorWithHue:(i * 5 % 17) / 17.0
@@ -144,7 +144,7 @@
 	//draw lines from center
     //TODO: make this color a variable
 	[[UIColor darkGrayColor] setStroke];
-	for (int i = 0; i <= _numOfV; i++) {
+	for (int i = 0; i < _numOfV; i++) {
 		CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y);
 		CGContextAddLineToPoint(context, _centerPoint.x - _r * sin(i * radPerV),
 		                        _centerPoint.y - _r * cos(i * radPerV));
@@ -158,7 +158,7 @@
 	//draw lines
 	for (int serie = 0; serie < [_dataSeries count]; serie++) {
 		[colors[serie] setStroke];
-		for (int i = 0; i <= _numOfV; ++i) {
+		for (int i = 0; i < _numOfV; ++i) {
 			CGFloat value = [_dataSeries[serie][i] floatValue];
 			if (i == 0) {
 				CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
@@ -168,6 +168,8 @@
 				                        _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r * cos(i * radPerV));
 			}
 		}
+        CGFloat value = [_dataSeries[serie][0] floatValue];
+        CGContextAddLineToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
 
 		CGContextStrokePath(context);
 
