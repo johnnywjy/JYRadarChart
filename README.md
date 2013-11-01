@@ -33,7 +33,6 @@ All you need to do is drop JYRadarChart files into your project, and add `#inclu
 
 ##Example Usage
 
-You don not need to set colors to the lines, they are generated automaticlly.
 
 	JYRadarChart *p;
 
@@ -57,6 +56,9 @@ You don not need to set colors to the lines, they are generated automaticlly.
 	//if you do not need a legend, you can safely get rid of setTitles:
 	p.showLegend = YES;
 	[p setTitles:@[@"archer", @"footman"]];
+	//there is a color generator in the code, it will generate colors for you
+	//so if you do not want to specify the colors, just delete the line below
+    [p setColors:@[[UIColor grayColor],[UIColor blackColor]]];
 	[self.view addSubview:p];
 
 
