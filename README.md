@@ -4,7 +4,7 @@
 an iOS open source Radar Chart implementation
 
 
-<img src="https://github.com/johnnywjy/JYRadarChart/blob/master/screenshots/screenshot_1.png" alt="JYRadarChart Screenshot" width="400" height="600" />
+![iPhone Screenshot](https://github.com/johnnywjy/JYRadarChart/blob/master/screenshots/screenshot_1.png?raw=true)
 
 
 ## Requirements
