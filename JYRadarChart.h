@@ -1,5 +1,5 @@
 //
-//  JYPolygon.h
+//  JYRadarChart.h
 //  JYRadarChart
 //
 //  Created by jy on 13-10-31.
