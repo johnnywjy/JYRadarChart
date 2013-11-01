@@ -1,10 +1,13 @@
 # JYRadarChart [![Build Status](https://travis-ci.org/johnnywjy/JYRadarChart.png)](https://travis-ci.org/johnnywjy/JYRadarChart)
 
 
-an iOS open source Radar Chart implementation
+an open source iOS Radar Chart implementation
 
 
-![iPhone Screenshot](https://github.com/johnnywjy/JYRadarChart/blob/master/screenshots/screenshot_1.png?raw=true)
+##Screenshots
+
+![iPhone Screenshot1](https://github.com/johnnywjy/JYRadarChart/blob/master/screenshots/screenshot_1.png?raw=true)
+![iPhone Screenshot2](https://github.com/johnnywjy/JYRadarChart/blob/master/screenshots/screenshot_2.png?raw=true)
 
 
 ## Requirements
@@ -18,22 +21,74 @@ an iOS open source Radar Chart implementation
 Build and run the `JYRadarChartDemo` project in Xcode
 
 
+##Installation
 
-##Install
+###CocoaPods
+TODO
 
-
-
+###Manual Install
 
 All you need to do is drop JYRadarChart files into your project, and add `#include "JYRadarChart.h"` to the top of classes that will use it.
 
 
 ##Example Usage
 
-TODO
+You don not need to set colors to the lines, they are generated automaticlly.
+
+	JYRadarChart *p;
+
+    p = [[JYRadarChart alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
+
+    //notice: you should repeat the 1st value at last
+	NSArray *a1 = @[@(81), @(97), @(87), @(60), @(65), @(77), @(81)];
+	NSArray *a2 = @[@(91), @(87), @(33), @(77), @(78), @(96), @(91)];
+	//set the data series
+	p.dataSeries = @[a1, a2];
+	//how many "circles" in the chart 
+	p.steps = 4;
+	p.backgroundColor = [UIColor whiteColor];
+	//you can set radius, min and max value by yourself, but if you
+	//leave r (will fill the rect), minValue (will be 0), maxValue (default is 100) alone, 
+	//that is okay. the points with too big value will be out of the chart and thus invisible
+	p.r = 60;
+	p.minValue = 20;
+	p.maxValue = 120;
+	p.attributes = @[@"Attack", @"Defense", @"Speed", @"HP", @"MP", @"IQ"];
+	//if you do not need a legend, you can safely get rid of setTitles:
+	p.showLegend = YES;
+	[p setTitles:@[@"archer", @"footman"]];
+	[self.view addSubview:p];
+
 
 
 ##Customization
-TODO
+
+here are all the properties you can change, you can find theme in `JYRadarChart.h`
+
+```
+@property (nonatomic, assign) CGFloat r;
+@property (nonatomic, assign) CGFloat maxValue;
+@property (nonatomic, assign) CGFloat minValue;
+@property (nonatomic, assign) BOOL drawPoints;
+@property (nonatomic, assign) BOOL fillArea;//not implemented yet
+@property (nonatomic, assign) BOOL showLegend;
+@property (nonatomic, assign) BOOL showStepText;
+@property (nonatomic, assign) CGFloat fillTransparency;//not implemented yet
+@property (nonatomic, copy) UIColor *backgroundLineColor;
+@property (nonatomic, retain) NSArray *dataSeries;
+@property (nonatomic, retain) NSArray *attributes;
+@property (nonatomic, assign) NSUInteger steps;
+@property (nonatomic, assign) CGPoint centerPoint;
+```
+
+
+##Contact
+
+johnny.wjy07#gmail.com
+
+Feel free to send me pull requests!
+
+Enjoy it~
 
 
 ##License
