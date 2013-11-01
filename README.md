@@ -24,11 +24,15 @@ Build and run the `JYRadarChartDemo` project in Xcode
 ##Installation
 
 ###CocoaPods
-TODO
+
+1. Create a Podfile in your project folder if you don't have one
+2. Add a pod entry for JYRadarChart to your Podfile `pod 'JYRadarChart'`
+3. Install the pod(s) by running `pod install`.
+4. Include JYRadarChart wherever you need it with `#import "JYRadarChart.h"`
 
 ###Manual Install
 
-All you need to do is drop JYRadarChart files into your project, and add `#include "JYRadarChart.h"` to the top of classes that will use it.
+All you need to do is drop JYRadarChart files into your project, and add `#import "JYRadarChart.h"` to the top of classes that will use it.
 
 
 ##Example Usage
