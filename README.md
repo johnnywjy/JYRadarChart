@@ -42,9 +42,8 @@ All you need to do is drop JYRadarChart files into your project, and add `#impor
 
     p = [[JYRadarChart alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
 
-    //notice: you should repeat the 1st value at last
-	NSArray *a1 = @[@(81), @(97), @(87), @(60), @(65), @(77), @(81)];
-	NSArray *a2 = @[@(91), @(87), @(33), @(77), @(78), @(96), @(91)];
+	NSArray *a1 = @[@(81), @(97), @(87), @(60), @(65), @(77)];
+	NSArray *a2 = @[@(91), @(87), @(33), @(77), @(78), @(96)];
 	//set the data series
 	p.dataSeries = @[a1, a2];
 	//how many "circles" in the chart 
