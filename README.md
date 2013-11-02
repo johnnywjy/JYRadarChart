@@ -8,6 +8,7 @@ an open source iOS Radar Chart implementation
 
 ![iPhone Screenshot1](https://github.com/johnnywjy/JYRadarChart/blob/master/screenshots/screenshot_1.png?raw=true)
 ![iPhone Screenshot2](https://github.com/johnnywjy/JYRadarChart/blob/master/screenshots/screenshot_2.png?raw=true)
+![iPhone Screenshot3](https://github.com/johnnywjy/JYRadarChart/blob/master/screenshots/screenshot_3.png?raw=true)
 
 
 ## Requirements
@@ -37,10 +38,16 @@ All you need to do is drop JYRadarChart files into your project, and add `#impor
 
 ##Example Usage
 
+###minimum
+	JYRadarChart *p = [[JYRadarChart alloc] initWithFrame:CGRectMake(30, 20, 200, 200)];
+    p.dataSeries = @[@[@(51),@(44),@(94),@(84),@(90)]];
+    p.attributes = @[@"attack",@"defense",@"speed",@"HP",@"MP"];
+	[self.view addSubview:p];
 
-	JYRadarChart *p;
 
-    p = [[JYRadarChart alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
+###fully customized
+
+    JYRadarChart *p = [[JYRadarChart alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
 
 	NSArray *a1 = @[@(81), @(97), @(87), @(60), @(65), @(77)];
 	NSArray *a2 = @[@(91), @(87), @(33), @(77), @(78), @(96)];
@@ -55,12 +62,18 @@ All you need to do is drop JYRadarChart files into your project, and add `#impor
 	p.r = 60;
 	p.minValue = 20;
 	p.maxValue = 120;
+	//you can choose whether fill area or not (just draw lines) 
+	p.fillArea = YES;
+    //you can specify the transparency, default is 1.0 (opaque)
+	//sadly it only works on auto generated colors,
+    //if you use setColors:, make sure the colors you sent have a proper alpha value :)
+    p.colorTransparency = 0.7;
 	p.attributes = @[@"Attack", @"Defense", @"Speed", @"HP", @"MP", @"IQ"];
 	//if you do not need a legend, you can safely get rid of setTitles:
 	p.showLegend = YES;
 	[p setTitles:@[@"archer", @"footman"]];
 	//there is a color generator in the code, it will generate colors for you
-	//so if you do not want to specify the colors, just delete the line below
+	//so if you do not want to specify the colors yourself, just delete the line below
     [p setColors:@[[UIColor grayColor],[UIColor blackColor]]];
 	[self.view addSubview:p];
 
@@ -75,10 +88,10 @@ here are all the properties you can change, you can find theme in `JYRadarChart.
 @property (nonatomic, assign) CGFloat maxValue;
 @property (nonatomic, assign) CGFloat minValue;
 @property (nonatomic, assign) BOOL drawPoints;
-@property (nonatomic, assign) BOOL fillArea;//not implemented yet
+@property (nonatomic, assign) BOOL fillArea;
 @property (nonatomic, assign) BOOL showLegend;
 @property (nonatomic, assign) BOOL showStepText;
-@property (nonatomic, assign) CGFloat fillTransparency;//not implemented yet
+@property (nonatomic, assign) CGFloat colorTransparency;
 @property (nonatomic, copy) UIColor *backgroundLineColor;
 @property (nonatomic, strong) NSArray *dataSeries;
 @property (nonatomic, strong) NSArray *attributes;
