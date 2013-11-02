@@ -33,7 +33,7 @@
 	p.minValue = 20;
 	p.maxValue = 120;
 	p.fillArea = YES;
-	p.fillTransparency = 0.7;
+	p.colorTransparency = 0.7;
 	p.attributes = @[@"Attack", @"Defense", @"Speed", @"HP", @"MP", @"IQ"];
 	p.showLegend = YES;
 	[p setTitles:@[@"archer", @"footman"]];
