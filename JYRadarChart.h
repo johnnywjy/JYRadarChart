@@ -19,8 +19,8 @@
 @property (nonatomic, assign) BOOL showStepText;
 @property (nonatomic, assign) CGFloat fillTransparency;//todo
 @property (nonatomic, copy) UIColor *backgroundLineColor;
-@property (nonatomic, retain) NSArray *dataSeries;
-@property (nonatomic, retain) NSArray *attributes;
+@property (nonatomic, strong) NSArray *dataSeries;
+@property (nonatomic, strong) NSArray *attributes;
 @property (nonatomic, assign) NSUInteger steps;
 @property (nonatomic, assign) CGPoint centerPoint;
 
