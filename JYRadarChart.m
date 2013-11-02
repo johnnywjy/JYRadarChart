@@ -38,7 +38,7 @@
 		_showStepText = NO;
         _fillArea = NO;
 		_minValue = 0;
-        _fillTransparency = 1.0;
+        _colorTransparency = 1.0;
 		_backgroundLineColor = [UIColor darkGrayColor];
         
 		self.legendView = [[JYLegendView alloc] initWithFrame:CGRectMake(frame.size.width - 60, 10, 50, 70)];
@@ -89,7 +89,7 @@
 			UIColor *color = [UIColor colorWithHue:1.0 * (i * COLOR_HUE_STEP % MAX_NUM_OF_COLOR) / MAX_NUM_OF_COLOR
 			                            saturation:1
 			                            brightness:1
-			                                 alpha:self.fillTransparency];
+			                                 alpha:self.colorTransparency];
 			self.legendView.colors[i] = color;
 		}
 	}

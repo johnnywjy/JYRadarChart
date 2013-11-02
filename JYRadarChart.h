@@ -17,7 +17,7 @@
 @property (nonatomic, assign) BOOL fillArea;
 @property (nonatomic, assign) BOOL showLegend;
 @property (nonatomic, assign) BOOL showStepText;
-@property (nonatomic, assign) CGFloat fillTransparency;
+@property (nonatomic, assign) CGFloat colorTransparency;
 @property (nonatomic, copy) UIColor *backgroundLineColor;
 @property (nonatomic, strong) NSArray *dataSeries;
 @property (nonatomic, strong) NSArray *attributes;
