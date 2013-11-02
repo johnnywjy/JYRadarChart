@@ -72,7 +72,10 @@
 }
 
 - (void)setColors:(NSArray *)colors {
-	self.legendView.colors = [colors mutableCopy];
+    [self.legendView.colors removeAllObjects];
+    for (UIColor *color in colors) {
+        [self.legendView.colors addObject:[color colorWithAlphaComponent:self.colorTransparency]];
+    }
 }
 
 - (void)setNeedsDisplay {
