@@ -32,11 +32,13 @@
 		_maxValue = 100.0;
 		_centerPoint = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
 		_r = MIN(self.frame.size.width / 2 - PADDING, self.frame.size.height / 2 - PADDING);
-		_steps = 0;
+		_steps = 1;
 		_drawPoints = NO;
 		_showLegend = NO;
 		_showStepText = NO;
+        _fillArea = NO;
 		_minValue = 0;
+        _fillTransparency = 1.0;
 		_backgroundLineColor = [UIColor darkGrayColor];
         
 		self.legendView = [[JYLegendView alloc] initWithFrame:CGRectMake(frame.size.width - 60, 10, 50, 70)];
@@ -87,7 +89,7 @@
 			UIColor *color = [UIColor colorWithHue:1.0 * (i * COLOR_HUE_STEP % MAX_NUM_OF_COLOR) / MAX_NUM_OF_COLOR
 			                            saturation:1
 			                            brightness:1
-			                                 alpha:1];
+			                                 alpha:self.fillTransparency];
 			self.legendView.colors[i] = color;
 		}
 	}
@@ -109,7 +111,7 @@
     
 	//draw attribute text
 	CGFloat height = [self.scaleFont lineHeight];
-    CGFloat padding = 2.0;
+	CGFloat padding = 2.0;
 	for (int i = 0; i < _numOfV; i++) {
 		NSString *attributeName = _attributes[i];
 		CGPoint pointOnEdge = CGPointMake(_centerPoint.x - _r * sin(i * radPerV), _centerPoint.y - _r * cos(i * radPerV));
@@ -123,12 +125,12 @@
         
 		//TODO: use attributes in iOS 7
 		[attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
-		                             legendCenter.y - height / 2.0,
-		                             width,
-		                             height)
-		         withFont:self.scaleFont
-		    lineBreakMode:NSLineBreakByClipping
-		        alignment:NSTextAlignmentCenter];
+		                                     legendCenter.y - height / 2.0,
+		                                     width,
+		                                     height)
+		                 withFont:self.scaleFont
+		            lineBreakMode:NSLineBreakByClipping
+		                alignment:NSTextAlignmentCenter];
 	}
     
     
@@ -168,7 +170,12 @@
     
 	//draw lines
 	for (int serie = 0; serie < [_dataSeries count]; serie++) {
-		[colors[serie] setStroke];
+		if (self.fillArea) {
+			[colors[serie] setFill];
+		}
+		else {
+			[colors[serie] setStroke];
+		}
 		for (int i = 0; i < _numOfV; ++i) {
 			CGFloat value = [_dataSeries[serie][i] floatValue];
 			if (i == 0) {
@@ -182,7 +189,13 @@
 		CGFloat value = [_dataSeries[serie][0] floatValue];
 		CGContextAddLineToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
         
-		CGContextStrokePath(context);
+		if (self.fillArea) {
+			CGContextFillPath(context);
+		}
+		else {
+			CGContextStrokePath(context);
+		}
+        
         
 		//draw data points
 		if (_drawPoints) {

@@ -14,10 +14,10 @@
 @property (nonatomic, assign) CGFloat maxValue;
 @property (nonatomic, assign) CGFloat minValue;
 @property (nonatomic, assign) BOOL drawPoints;
-@property (nonatomic, assign) BOOL fillArea;//todo
+@property (nonatomic, assign) BOOL fillArea;
 @property (nonatomic, assign) BOOL showLegend;
 @property (nonatomic, assign) BOOL showStepText;
-@property (nonatomic, assign) CGFloat fillTransparency;//todo
+@property (nonatomic, assign) CGFloat fillTransparency;
 @property (nonatomic, copy) UIColor *backgroundLineColor;
 @property (nonatomic, strong) NSArray *dataSeries;
 @property (nonatomic, strong) NSArray *attributes;
