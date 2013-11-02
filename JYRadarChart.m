@@ -12,6 +12,9 @@
 #define PADDING 13
 #define LEGEND_PADDING 3
 #define ATTRIBUTE_TEXT_SIZE 10
+#define COLOR_HUE_STEP 5
+#define MAX_NUM_OF_COLOR 17
+
 @interface JYRadarChart ()
 
 @property (nonatomic, assign) NSUInteger numOfV;
@@ -81,7 +84,7 @@
 	_numOfV = [_dataSeries[0] count];
 	if (self.legendView.colors.count < _dataSeries.count) {
 		for (int i = 0; i < _dataSeries.count; i++) {
-			UIColor *color = [UIColor colorWithHue:(i * 5 % 17) / 17.0
+			UIColor *color = [UIColor colorWithHue:1.0 * (i * COLOR_HUE_STEP % MAX_NUM_OF_COLOR) / MAX_NUM_OF_COLOR
 			                            saturation:1
 			                            brightness:1
 			                                 alpha:1];
