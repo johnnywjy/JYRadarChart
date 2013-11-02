@@ -11,11 +11,13 @@
 
 #define PADDING 13
 #define LEGEND_PADDING 3
-
+#define ATTRIBUTE_TEXT_SIZE 10
 @interface JYRadarChart ()
 
 @property (nonatomic, assign) NSUInteger numOfV;
 @property (nonatomic, strong) JYLegendView *legendView;
+@property (nonatomic, strong) NSDictionary *stringAttributes;
+@property (nonatomic, strong) UIFont *scaleFont;
 
 @end
 
@@ -34,12 +36,16 @@
 		_showStepText = NO;
 		_minValue = 0;
 		_backgroundLineColor = [UIColor darkGrayColor];
+
 		self.legendView = [[JYLegendView alloc] initWithFrame:CGRectMake(frame.size.width - 60, 10, 50, 70)];
 		self.legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		self.legendView.backgroundColor = [UIColor clearColor];
 		self.legendView.colors = [NSMutableArray array];
 		self.attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
 		                    @"this", @"is", @"just", @"a", @"placeholder"];
+
+		self.scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
+		self.stringAttributes = @{ NSFontAttributeName: self.scaleFont };
 	}
 	return self;
 }
@@ -62,10 +68,9 @@
 	self.legendView.titles = titles;
 }
 
-- (void)setColors:(NSArray *)colors{
-    self.legendView.colors = [colors mutableCopy];
+- (void)setColors:(NSArray *)colors {
+	self.legendView.colors = [colors mutableCopy];
 }
-
 
 - (void)setNeedsDisplay {
 	[super setNeedsDisplay];
@@ -76,15 +81,15 @@
 - (void)setDataSeries:(NSArray *)dataSeries {
 	_dataSeries = dataSeries;
 	_numOfV = [_dataSeries[0] count];
-    if (self.legendView.colors.count < _dataSeries.count) {
-        for (int i = 0; i < _dataSeries.count; i++) {
-            UIColor *color = [UIColor colorWithHue:(i * 5 % 17) / 17.0
-                                        saturation:1
-                                        brightness:1
-                                             alpha:1];
-            self.legendView.colors[i] = color;
-        }
-    }
+	if (self.legendView.colors.count < _dataSeries.count) {
+		for (int i = 0; i < _dataSeries.count; i++) {
+			UIColor *color = [UIColor colorWithHue:(i * 5 % 17) / 17.0
+			                            saturation:1
+			                            brightness:1
+			                                 alpha:1];
+			self.legendView.colors[i] = color;
+		}
+	}
 }
 
 - (void)layoutSubviews {
@@ -102,20 +107,23 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
 
 	//draw attribute text
-	UIFont *scaleFont = [UIFont systemFontOfSize:10];
-	CGFloat height = [scaleFont lineHeight];
+	CGFloat height = [self.scaleFont lineHeight];
 	for (int i = 0; i < _numOfV; i++) {
 		NSString *title = _attributes[i];
 		CGPoint pointOnEdge = CGPointMake(_centerPoint.x - _r * sin(i * radPerV), _centerPoint.y - _r * cos(i * radPerV));
-		NSInteger width = [title sizeWithFont:scaleFont].width;
+
+		NSInteger width = [title sizeWithAttributes:self.stringAttributes].width;
+
 		CGFloat padding = 2.0;
 		CGFloat xOffset = pointOnEdge.x >= _centerPoint.x ? width / 2.0 + padding : -width / 2.0 - padding;
 		CGFloat yOffset = pointOnEdge.y >= _centerPoint.y ? height / 2.0 + padding : -height / 2.0 - padding;
 		CGPoint legendCenter = CGPointMake(pointOnEdge.x + xOffset, pointOnEdge.y + yOffset);
+
+        //TODO: use attributes
 		[title drawInRect:CGRectMake(legendCenter.x - width / 2.0,
 		                             legendCenter.y - height / 2.0,
 		                             width, height)
-		         withFont:scaleFont
+		         withFont:self.scaleFont
 		    lineBreakMode:NSLineBreakByClipping
 		        alignment:NSTextAlignmentCenter];
 	}
@@ -123,7 +131,7 @@
 
 	//draw steps line
 	//static CGFloat dashedPattern[] = {3,3};
-    //TODO: make this color a variable
+	//TODO: make this color a variable
 	[[UIColor lightGrayColor] setStroke];
 	CGContextSaveGState(context);
 	for (int step = 1; step <= _steps; step++) {
@@ -142,7 +150,7 @@
 	CGContextRestoreGState(context);
 
 	//draw lines from center
-    //TODO: make this color a variable
+	//TODO: make this color a variable
 	[[UIColor darkGrayColor] setStroke];
 	for (int i = 0; i < _numOfV; i++) {
 		CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y);
@@ -168,8 +176,8 @@
 				                        _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r * cos(i * radPerV));
 			}
 		}
-        CGFloat value = [_dataSeries[serie][0] floatValue];
-        CGContextAddLineToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
+		CGFloat value = [_dataSeries[serie][0] floatValue];
+		CGContextAddLineToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
 
 		CGContextStrokePath(context);
 
@@ -191,15 +199,16 @@
 
 	if (self.showStepText) {
 		//draw step label text, alone y axis
-        //TODO: make this color a variable
+		//TODO: make this color a variable
 		[[UIColor blackColor] setFill];
 		for (int step = 0; step <= _steps; step++) {
 			CGFloat value = _minValue + (_maxValue - _minValue) * step / _steps;
 			NSString *currentLabel = [NSString stringWithFormat:@"%.0f", value];
 			[currentLabel drawInRect:CGRectMake(_centerPoint.x + 3,
 			                                    _centerPoint.y - _r * step / _steps - 3,
-			                                    20, 10)
-			                withFont:scaleFont];
+			                                    20,
+			                                    10)
+			          withAttributes:self.stringAttributes];
 		}
 	}
 }
