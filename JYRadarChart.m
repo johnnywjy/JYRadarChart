@@ -16,7 +16,6 @@
 
 @property (nonatomic, assign) NSUInteger numOfV;
 @property (nonatomic, strong) JYLegendView *legendView;
-@property (nonatomic, strong) NSDictionary *stringAttributes;
 @property (nonatomic, strong) UIFont *scaleFont;
 
 @end
@@ -36,16 +35,15 @@
 		_showStepText = NO;
 		_minValue = 0;
 		_backgroundLineColor = [UIColor darkGrayColor];
-
+        
 		self.legendView = [[JYLegendView alloc] initWithFrame:CGRectMake(frame.size.width - 60, 10, 50, 70)];
 		self.legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		self.legendView.backgroundColor = [UIColor clearColor];
 		self.legendView.colors = [NSMutableArray array];
 		self.attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
 		                    @"this", @"is", @"just", @"a", @"placeholder"];
-
+        
 		self.scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
-		self.stringAttributes = @{ NSFontAttributeName: self.scaleFont };
 	}
 	return self;
 }
@@ -105,30 +103,32 @@
 	NSArray *colors = [self.legendView.colors copy];
 	CGFloat radPerV = M_PI * 2 / _numOfV;
 	CGContextRef context = UIGraphicsGetCurrentContext();
-
+    
 	//draw attribute text
 	CGFloat height = [self.scaleFont lineHeight];
+    CGFloat padding = 2.0;
 	for (int i = 0; i < _numOfV; i++) {
-		NSString *title = _attributes[i];
+		NSString *attributeName = _attributes[i];
 		CGPoint pointOnEdge = CGPointMake(_centerPoint.x - _r * sin(i * radPerV), _centerPoint.y - _r * cos(i * radPerV));
-
-		NSInteger width = [title sizeWithAttributes:self.stringAttributes].width;
-
-		CGFloat padding = 2.0;
+        
+		CGSize attributeTextSize = JY_TEXT_SIZE(attributeName, self.scaleFont);
+		NSInteger width = attributeTextSize.width;
+        
 		CGFloat xOffset = pointOnEdge.x >= _centerPoint.x ? width / 2.0 + padding : -width / 2.0 - padding;
 		CGFloat yOffset = pointOnEdge.y >= _centerPoint.y ? height / 2.0 + padding : -height / 2.0 - padding;
 		CGPoint legendCenter = CGPointMake(pointOnEdge.x + xOffset, pointOnEdge.y + yOffset);
-
-        //TODO: use attributes
-		[title drawInRect:CGRectMake(legendCenter.x - width / 2.0,
+        
+		//TODO: use attributes in iOS 7
+		[attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
 		                             legendCenter.y - height / 2.0,
-		                             width, height)
+		                             width,
+		                             height)
 		         withFont:self.scaleFont
 		    lineBreakMode:NSLineBreakByClipping
 		        alignment:NSTextAlignmentCenter];
 	}
-
-
+    
+    
 	//draw steps line
 	//static CGFloat dashedPattern[] = {3,3};
 	//TODO: make this color a variable
@@ -148,7 +148,7 @@
 		CGContextStrokePath(context);
 	}
 	CGContextRestoreGState(context);
-
+    
 	//draw lines from center
 	//TODO: make this color a variable
 	[[UIColor darkGrayColor] setStroke];
@@ -159,10 +159,10 @@
 		CGContextStrokePath(context);
 	}
 	//end of base except axis label
-
-
+    
+    
 	CGContextSetLineWidth(context, 2.0);
-
+    
 	//draw lines
 	for (int serie = 0; serie < [_dataSeries count]; serie++) {
 		[colors[serie] setStroke];
@@ -178,16 +178,16 @@
 		}
 		CGFloat value = [_dataSeries[serie][0] floatValue];
 		CGContextAddLineToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
-
+        
 		CGContextStrokePath(context);
-
+        
 		//draw data points
 		if (_drawPoints) {
 			for (int i = 0; i < _numOfV; i++) {
 				CGFloat value = [_dataSeries[serie][i] floatValue];
 				CGFloat xVal = _centerPoint.x - (value - _minValue) / (_maxValue - _minValue) * _r * sin(i * radPerV);
 				CGFloat yVal = _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r * cos(i * radPerV);
-
+                
 				[self.backgroundColor setFill];
 				[colors[serie] setFill];
 				CGContextFillEllipseInRect(context, CGRectMake(xVal - 4, yVal - 4, 8, 8));
@@ -196,7 +196,7 @@
 			}
 		}
 	}
-
+    
 	if (self.showStepText) {
 		//draw step label text, alone y axis
 		//TODO: make this color a variable
@@ -204,11 +204,12 @@
 		for (int step = 0; step <= _steps; step++) {
 			CGFloat value = _minValue + (_maxValue - _minValue) * step / _steps;
 			NSString *currentLabel = [NSString stringWithFormat:@"%.0f", value];
-			[currentLabel drawInRect:CGRectMake(_centerPoint.x + 3,
-			                                    _centerPoint.y - _r * step / _steps - 3,
-			                                    20,
-			                                    10)
-			          withAttributes:self.stringAttributes];
+			JY_DRAW_TEXT_IN_RECT(currentLabel,
+			                     CGRectMake(_centerPoint.x + 3,
+			                                _centerPoint.y - _r * step / _steps - 3,
+			                                20,
+			                                10),
+			                     self.scaleFont);
 		}
 	}
 }

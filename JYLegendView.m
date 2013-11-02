@@ -17,7 +17,6 @@
 @interface JYLegendView ()
 
 @property (nonatomic, strong) UIFont *legendFont;
-@property (nonatomic, strong) NSDictionary *stringAttributes;
 
 @end
 
@@ -43,7 +42,6 @@ void CGContextFillRoundedRect(CGContextRef c, CGRect rect, CGFloat radius) {
 	self = [super initWithFrame:frame];
 	if (self) {
 		self.legendFont = [UIFont systemFontOfSize:FONT_SIZE];
-		self.stringAttributes = @{ NSFontAttributeName: self.legendFont };
 	}
 	return self;
 }
@@ -60,11 +58,11 @@ void CGContextFillRoundedRect(CGContextRef c, CGRect rect, CGFloat radius) {
 		if (color) {
 			[color setFill];
 			CGContextFillEllipseInRect(c, CGRectMake(PADDING + 2,
-                                                     PADDING + round(y) + self.legendFont.xHeight / 2 + 1,
-                                                     CIRCLE_DIAMETER, CIRCLE_DIAMETER));
+			                                         PADDING + round(y) + self.legendFont.xHeight / 2 + 1,
+			                                         CIRCLE_DIAMETER, CIRCLE_DIAMETER));
 		}
 		[[UIColor blackColor] set];
-		[title drawAtPoint:CGPointMake(COLOR_PADDING + PADDING, y + PADDING) withAttributes:self.stringAttributes];
+		JY_DRAW_TEXT_AT_POINT(title, CGPointMake(COLOR_PADDING + PADDING, y + PADDING), self.legendFont);
 		y += [self.legendFont lineHeight];
 	}
 }
@@ -73,7 +71,7 @@ void CGContextFillRoundedRect(CGContextRef c, CGRect rect, CGFloat radius) {
 	CGFloat h = [self.legendFont lineHeight] * [self.titles count];
 	CGFloat w = 0;
 	for (NSString *title in self.titles) {
-		CGSize s = [title sizeWithAttributes:self.stringAttributes];
+		CGSize s = JY_TEXT_SIZE(title, self.legendFont);
 		w = MAX(w, s.width);
 	}
 	return CGSizeMake(COLOR_PADDING + w + 2 * PADDING, h + 2 * PADDING);
