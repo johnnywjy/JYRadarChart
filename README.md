@@ -65,8 +65,6 @@ All you need to do is drop JYRadarChart files into your project, and add `#impor
 	//you can choose whether fill area or not (just draw lines) 
 	p.fillArea = YES;
     //you can specify the transparency, default is 1.0 (opaque)
-	//sadly it only works on auto generated colors,
-    //if you use setColors:, make sure the colors you sent have a proper alpha value :)
     p.colorTransparency = 0.7;
 	p.attributes = @[@"Attack", @"Defense", @"Speed", @"HP", @"MP", @"IQ"];
 	//if you do not need a legend, you can safely get rid of setTitles:
