@@ -10,7 +10,6 @@
 
 @interface JYLegendView : UIView
 
-@property (nonatomic, strong) UIFont *titlesFont;
 @property (nonatomic, copy) NSArray *titles;
 @property (nonatomic, strong) NSMutableArray *colors;
 
