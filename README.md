@@ -79,7 +79,7 @@ All you need to do is drop JYRadarChart files into your project, and add `#impor
 
 ##Customization
 
-here are all the properties you can change, you can find theme in `JYRadarChart.h`
+here are all the properties you can change, you can find them in `JYRadarChart.h`
 
 ```
 @property (nonatomic, assign) CGFloat r;
@@ -95,6 +95,8 @@ here are all the properties you can change, you can find theme in `JYRadarChart.
 @property (nonatomic, strong) NSArray *attributes;
 @property (nonatomic, assign) NSUInteger steps;
 @property (nonatomic, assign) CGPoint centerPoint;
+- (void)setTitles:(NSArray *)titles;
+- (void)setColors:(NSArray *)colors;
 ```
 
 
