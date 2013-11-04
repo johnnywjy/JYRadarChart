@@ -65,7 +65,6 @@ All you need to do is drop JYRadarChart files into your project, and add `#impor
 	//you can choose whether fill area or not (just draw lines) 
 	p.fillArea = YES;
     //you can specify the opacity, default is 1.0 (opaque)
-    //use colorTransparency if you are using version 0.3.0 via CocoaPods
     p.colorOpacity = 0.7;
 	p.attributes = @[@"Attack", @"Defense", @"Speed", @"HP", @"MP", @"IQ"];
 	//if you do not need a legend, you can safely get rid of setTitles:
