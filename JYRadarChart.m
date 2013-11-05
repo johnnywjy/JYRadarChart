@@ -207,7 +207,6 @@
 				CGFloat xVal = _centerPoint.x - (value - _minValue) / (_maxValue - _minValue) * _r * sin(i * radPerV);
 				CGFloat yVal = _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r * cos(i * radPerV);
                 
-				[self.backgroundColor setFill];
 				[colors[serie] setFill];
 				CGContextFillEllipseInRect(context, CGRectMake(xVal - 4, yVal - 4, 8, 8));
 				[self.backgroundColor setFill];
