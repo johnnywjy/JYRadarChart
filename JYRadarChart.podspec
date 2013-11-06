@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "JYRadarChart"
-  s.version      = "0.3.0"
+  s.version      = "0.3.1"
   s.summary      = "an iOS open source Radar Chart implementation"
   s.homepage     = "https://github.com/johnnywjy/JYRadarChart"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
