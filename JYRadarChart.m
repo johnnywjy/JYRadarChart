@@ -125,23 +125,22 @@
 		CGFloat xOffset = pointOnEdge.x >= _centerPoint.x ? width / 2.0 + padding : -width / 2.0 - padding;
 		CGFloat yOffset = pointOnEdge.y >= _centerPoint.y ? height / 2.0 + padding : -height / 2.0 - padding;
 		CGPoint legendCenter = CGPointMake(pointOnEdge.x + xOffset, pointOnEdge.y + yOffset);
-        
-		if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 70000) {
-            
+
+        if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 70000) {
             NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
             [paragraphStyle setLineBreakMode:NSLineBreakByClipping];
             [paragraphStyle setAlignment:NSTextAlignmentCenter];
-            
+
             NSDictionary *attributes = @{ NSFontAttributeName: self.scaleFont,
                                           NSParagraphStyleAttributeName: paragraphStyle };
-            
+
             [attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
                                                  legendCenter.y - height / 2.0,
                                                  width,
                                                  height)
                        withAttributes:attributes];
-        } else {
-            
+        }
+        else {
             [attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
                                                  legendCenter.y - height / 2.0,
                                                  width,
@@ -150,8 +149,7 @@
                         lineBreakMode:NSLineBreakByClipping
                             alignment:NSTextAlignmentCenter];
         }
-	}
-    
+    }
     
 	//draw steps line
 	//static CGFloat dashedPattern[] = {3,3};
