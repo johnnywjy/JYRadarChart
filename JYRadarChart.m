@@ -126,14 +126,30 @@
 		CGFloat yOffset = pointOnEdge.y >= _centerPoint.y ? height / 2.0 + padding : -height / 2.0 - padding;
 		CGPoint legendCenter = CGPointMake(pointOnEdge.x + xOffset, pointOnEdge.y + yOffset);
         
-		//TODO: use attributes in iOS 7
-		[attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
-		                                     legendCenter.y - height / 2.0,
-		                                     width,
-		                                     height)
-		                 withFont:self.scaleFont
-		            lineBreakMode:NSLineBreakByClipping
-		                alignment:NSTextAlignmentCenter];
+		if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 70000) {
+            
+            NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+            [paragraphStyle setLineBreakMode:NSLineBreakByClipping];
+            [paragraphStyle setAlignment:NSTextAlignmentCenter];
+            
+            NSDictionary *attributes = @{ NSFontAttributeName: self.scaleFont,
+                                          NSParagraphStyleAttributeName: paragraphStyle };
+            
+            [attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
+                                                 legendCenter.y - height / 2.0,
+                                                 width,
+                                                 height)
+                       withAttributes:attributes];
+        } else {
+            
+            [attributeName drawInRect:CGRectMake(legendCenter.x - width / 2.0,
+                                                 legendCenter.y - height / 2.0,
+                                                 width,
+                                                 height)
+                             withFont:self.scaleFont
+                        lineBreakMode:NSLineBreakByClipping
+                            alignment:NSTextAlignmentCenter];
+        }
 	}
     
     
