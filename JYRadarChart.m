@@ -53,7 +53,7 @@
     _fillArea = NO;
     _minValue = 0;
     _colorOpacity = 1.0;
-    _backgroundLineColor = [UIColor darkGrayColor];
+    _backgroundLineColorRadial = [UIColor darkGrayColor];
     _backgroundFillColor = [UIColor whiteColor];
 
     _legendView = [[JYLegendView alloc] init];
@@ -194,8 +194,7 @@
 	CGContextRestoreGState(context);
     
 	//draw lines from center
-	//TODO: make this color a variable
-	[[UIColor darkGrayColor] setStroke];
+	[_backgroundLineColorRadial setStroke];
 	for (int i = 0; i < _numOfV; i++) {
 		CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y);
 		CGContextAddLineToPoint(context, _centerPoint.x - _r * sin(i * radPerV),
