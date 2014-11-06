@@ -55,14 +55,14 @@
     _colorOpacity = 1.0;
     _backgroundLineColor = [UIColor darkGrayColor];
 
-    self.legendView = [[JYLegendView alloc] init];
-    self.legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-    self.legendView.backgroundColor = [UIColor clearColor];
-    self.legendView.colors = [NSMutableArray array];
-    self.attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
+    _legendView = [[JYLegendView alloc] init];
+    _legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+    _legendView.backgroundColor = [UIColor clearColor];
+    _legendView.colors = [NSMutableArray array];
+    _attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
                         @"this", @"is", @"just", @"a", @"placeholder"];
 
-    self.scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
+    _scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
 }
 
 - (void)setShowLegend:(BOOL)showLegend {

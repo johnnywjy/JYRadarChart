@@ -55,7 +55,7 @@ void CGContextFillRoundedRect(CGContextRef c, CGRect rect, CGFloat radius) {
 }
 
 - (void)setDefaultValues {
-    self.legendFont = [UIFont systemFontOfSize:FONT_SIZE];
+    _legendFont = [UIFont systemFontOfSize:FONT_SIZE];
 }
 
 - (void)drawRect:(CGRect)rect {
