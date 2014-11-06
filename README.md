@@ -104,11 +104,13 @@ here are all the properties you can change, you can find them in `JYRadarChart.h
 @property (nonatomic, assign) BOOL showLegend;
 @property (nonatomic, assign) BOOL showStepText;
 @property (nonatomic, assign) CGFloat colorOpacity;
-@property (nonatomic, copy) UIColor *backgroundLineColor;
+@property (nonatomic, strong) UIColor *backgroundLineColor;
+@property (nonatomic, strong) UIColor *backgroundFillColor;
 @property (nonatomic, strong) NSArray *dataSeries;
 @property (nonatomic, strong) NSArray *attributes;
 @property (nonatomic, assign) NSUInteger steps;
 @property (nonatomic, assign) CGPoint centerPoint;
+
 - (void)setTitles:(NSArray *)titles;
 - (void)setColors:(NSArray *)colors;
 ```
