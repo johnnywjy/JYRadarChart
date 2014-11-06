@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSArray *attributes;
 @property (nonatomic, assign) NSUInteger steps;
 @property (nonatomic, assign) CGPoint centerPoint;
+@property (nonatomic, strong) UIColor *backgroundFillColor;
 
 - (void)setTitles:(NSArray *)titles;
 - (void)setColors:(NSArray *)colors;

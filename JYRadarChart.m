@@ -54,6 +54,7 @@
     _minValue = 0;
     _colorOpacity = 1.0;
     _backgroundLineColor = [UIColor darkGrayColor];
+    _backgroundFillColor = [UIColor whiteColor];
 
     _legendView = [[JYLegendView alloc] init];
     _legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -162,7 +163,16 @@
                             alignment:NSTextAlignmentCenter];
         }
     }
-    
+
+    //draw background fill color
+    [_backgroundFillColor setFill];
+    CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - _r);
+    for (int i = 1; i <= _numOfV; ++i) {
+        CGContextAddLineToPoint(context, _centerPoint.x - _r * sin(i * radPerV),
+                                _centerPoint.y - _r * cos(i * radPerV));
+    }
+    CGContextFillPath(context);
+
 	//draw steps line
 	//static CGFloat dashedPattern[] = {3,3};
 	//TODO: make this color a variable
