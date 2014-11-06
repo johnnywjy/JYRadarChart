@@ -18,7 +18,7 @@
 @property (nonatomic, assign) BOOL showLegend;
 @property (nonatomic, assign) BOOL showStepText;
 @property (nonatomic, assign) CGFloat colorOpacity;
-@property (nonatomic, copy) UIColor *backgroundLineColor;
+@property (nonatomic, strong) UIColor *backgroundLineColor;
 @property (nonatomic, strong) NSArray *dataSeries;
 @property (nonatomic, strong) NSArray *attributes;
 @property (nonatomic, assign) NSUInteger steps;
