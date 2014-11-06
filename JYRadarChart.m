@@ -28,29 +28,41 @@
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
-		self.backgroundColor = [UIColor whiteColor];
-		_maxValue = 100.0;
-		_centerPoint = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
-		_r = MIN(self.frame.size.width / 2 - PADDING, self.frame.size.height / 2 - PADDING);
-		_steps = 1;
-		_drawPoints = NO;
-		_showLegend = NO;
-		_showStepText = NO;
-        _fillArea = NO;
-		_minValue = 0;
-        _colorOpacity = 1.0;
-		_backgroundLineColor = [UIColor darkGrayColor];
-        
-		self.legendView = [[JYLegendView alloc] initWithFrame:CGRectMake(frame.size.width - 60, 10, 50, 70)];
-		self.legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		self.legendView.backgroundColor = [UIColor clearColor];
-		self.legendView.colors = [NSMutableArray array];
-		self.attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
-		                    @"this", @"is", @"just", @"a", @"placeholder"];
-        
-		self.scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
+        [self setDefaultValues];
 	}
 	return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setDefaultValues];
+    }
+    return self;
+}
+
+- (void)setDefaultValues {
+    self.backgroundColor = [UIColor whiteColor];
+    _maxValue = 100.0;
+    _centerPoint = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    _r = MIN(self.frame.size.width / 2 - PADDING, self.frame.size.height / 2 - PADDING);
+    _steps = 1;
+    _drawPoints = NO;
+    _showLegend = NO;
+    _showStepText = NO;
+    _fillArea = NO;
+    _minValue = 0;
+    _colorOpacity = 1.0;
+    _backgroundLineColor = [UIColor darkGrayColor];
+
+    self.legendView = [[JYLegendView alloc] init];
+    self.legendView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+    self.legendView.backgroundColor = [UIColor clearColor];
+    self.legendView.colors = [NSMutableArray array];
+    self.attributes = @[@"you", @"should", @"set", @"these", @"data", @"titles,",
+                        @"this", @"is", @"just", @"a", @"placeholder"];
+
+    self.scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
 }
 
 - (void)setShowLegend:(BOOL)showLegend {
