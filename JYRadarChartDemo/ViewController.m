@@ -34,6 +34,7 @@
 	p.maxValue = 120;
 	p.fillArea = YES;
 	p.colorOpacity = 0.7;
+    p.backgroundFillColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
 	p.attributes = @[@"Attack", @"Defense", @"Speed", @"HP", @"MP", @"IQ"];
 	p.showLegend = YES;
 	[p setTitles:@[@"archer", @"footman"]];
@@ -48,6 +49,7 @@
 	p2 = [[JYRadarChart alloc] initWithFrame:CGRectMake(10, 220, 280, 200)];
 	p2.centerPoint = CGPointMake(130, 100);
 	p2.showLegend = YES;
+    p2.backgroundFillColor = [UIColor whiteColor];
 	[p2 setTitles:@[@"a", @"b", @"c", @"d", @"e", @"f", @"g", @"h", @"i", @"j"]];
 	p2.drawPoints = YES;
 	p2.attributes = @[@"Price", @"Value", @"Pressure", @"Height", @"Weight", @"Grade",
