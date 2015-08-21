@@ -99,7 +99,8 @@
 
 - (void)setDataSeries:(NSArray *)dataSeries {
 	_dataSeries = dataSeries;
-	_numOfV = [_dataSeries[0] count];
+	NSArray *arr = _dataSeries[0];
+	_numOfV = [arr count];
 	if (self.legendView.colors.count < _dataSeries.count) {
 		for (int i = 0; i < _dataSeries.count; i++) {
 			UIColor *color = [UIColor colorWithHue:1.0 * (i * COLOR_HUE_STEP % MAX_NUM_OF_COLOR) / MAX_NUM_OF_COLOR
