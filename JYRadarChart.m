@@ -207,48 +207,50 @@
 	CGContextSetLineWidth(context, 2.0);
     
 	//draw lines
-	for (int serie = 0; serie < [_dataSeries count]; serie++) {
-		if (self.fillArea) {
-			[colors[serie] setFill];
-		}
-		else {
-			[colors[serie] setStroke];
-		}
-		for (int i = 0; i < _numOfV; ++i) {
-			CGFloat value = [_dataSeries[serie][i] floatValue];
-			if (i == 0) {
-				CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
-			}
-			else {
-				CGContextAddLineToPoint(context, _centerPoint.x - (value - _minValue) / (_maxValue - _minValue) * _r * sin(i * radPerV),
-				                        _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r * cos(i * radPerV));
-			}
-		}
-		CGFloat value = [_dataSeries[serie][0] floatValue];
-		CGContextAddLineToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
-        
-		if (self.fillArea) {
-			CGContextFillPath(context);
-		}
-		else {
-			CGContextStrokePath(context);
-		}
-        
-        
-		//draw data points
-		if (_drawPoints) {
-			for (int i = 0; i < _numOfV; i++) {
-				CGFloat value = [_dataSeries[serie][i] floatValue];
-				CGFloat xVal = _centerPoint.x - (value - _minValue) / (_maxValue - _minValue) * _r * sin(i * radPerV);
-				CGFloat yVal = _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r * cos(i * radPerV);
-                
-				[colors[serie] setFill];
-				CGContextFillEllipseInRect(context, CGRectMake(xVal - 4, yVal - 4, 8, 8));
-				[self.backgroundColor setFill];
-				CGContextFillEllipseInRect(context, CGRectMake(xVal - 2, yVal - 2, 4, 4));
-			}
-		}
-	}
+    if (_numOfV > 0) {
+        for (int serie = 0; serie < [_dataSeries count]; serie++) {
+            if (self.fillArea) {
+                [colors[serie] setFill];
+            }
+            else {
+                [colors[serie] setStroke];
+            }
+            for (int i = 0; i < _numOfV; ++i) {
+                CGFloat value = [_dataSeries[serie][i] floatValue];
+                if (i == 0) {
+                    CGContextMoveToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
+                }
+                else {
+                    CGContextAddLineToPoint(context, _centerPoint.x - (value - _minValue) / (_maxValue - _minValue) * _r * sin(i * radPerV),
+                            _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r * cos(i * radPerV));
+                }
+            }
+            CGFloat value = [_dataSeries[serie][0] floatValue];
+            CGContextAddLineToPoint(context, _centerPoint.x, _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r);
+
+            if (self.fillArea) {
+                CGContextFillPath(context);
+            }
+            else {
+                CGContextStrokePath(context);
+            }
+
+
+            //draw data points
+            if (_drawPoints) {
+                for (int i = 0; i < _numOfV; i++) {
+                    CGFloat value = [_dataSeries[serie][i] floatValue];
+                    CGFloat xVal = _centerPoint.x - (value - _minValue) / (_maxValue - _minValue) * _r * sin(i * radPerV);
+                    CGFloat yVal = _centerPoint.y - (value - _minValue) / (_maxValue - _minValue) * _r * cos(i * radPerV);
+
+                    [colors[serie] setFill];
+                    CGContextFillEllipseInRect(context, CGRectMake(xVal - 4, yVal - 4, 8, 8));
+                    [self.backgroundColor setFill];
+                    CGContextFillEllipseInRect(context, CGRectMake(xVal - 2, yVal - 2, 4, 4));
+                }
+            }
+        }
+    }
     
 	if (self.showStepText) {
 		//draw step label text, alone y axis
