@@ -25,6 +25,8 @@
 @property (nonatomic, assign) CGPoint centerPoint;
 @property (nonatomic, strong) UIColor *backgroundFillColor;
 
+@property (nonatomic, assign) BOOL  clockwise; //direction of data
+
 - (void)setTitles:(NSArray *)titles;
 - (void)setColors:(NSArray *)colors;
 

@@ -64,6 +64,8 @@
                         @"this", @"is", @"just", @"a", @"placeholder"];
 
     _scaleFont = [UIFont systemFontOfSize:ATTRIBUTE_TEXT_SIZE];
+    
+    _clockwise = YES;
 }
 
 - (void)setShowLegend:(BOOL)showLegend {
@@ -124,6 +126,15 @@
 - (void)drawRect:(CGRect)rect {
 	NSArray *colors = [self.legendView.colors copy];
 	CGFloat radPerV = M_PI * 2 / _numOfV;
+    
+    if (_clockwise) {
+        radPerV =  - (M_PI * 2 / _numOfV);
+    }
+    else
+    {
+        radPerV = (M_PI * 2 / _numOfV);
+    }
+    
 	CGContextRef context = UIGraphicsGetCurrentContext();
     
 	//draw attribute text
