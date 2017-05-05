@@ -35,29 +35,29 @@ class JYLegendView: UIView {
         c.addArc(center: CGPoint(x: rect.origin.x + radiusAux,
                                  y: rect.origin.y + radiusAux),
                  radius: radiusAux,
-                 startAngle: CGFloat(M_PI),
-                 endAngle: CGFloat(M_PI) * 1.5,
+                 startAngle: CGFloat(Double.pi),
+                 endAngle: CGFloat(Double.pi) * 1.5,
                  clockwise: false)
         
         c.addArc(center: CGPoint(x: rect.origin.x + rect.size.width - radiusAux,
                                  y: rect.origin.y + radiusAux),
                  radius: radiusAux,
-                 startAngle: CGFloat(M_PI) * 1.5,
-                 endAngle: CGFloat(M_PI) * 2.0,
+                 startAngle: CGFloat(Double.pi) * 1.5,
+                 endAngle: CGFloat(Double.pi) * 2.0,
                  clockwise: false)
         
         c.addArc(center: CGPoint(x: rect.origin.x + rect.size.width - radiusAux,
                                  y: rect.origin.y + rect.size.height - radiusAux),
                  radius: radiusAux,
-                 startAngle: CGFloat(M_PI) * 2.0,
-                 endAngle: CGFloat(M_PI) * 0.5,
+                 startAngle: CGFloat(Double.pi) * 2.0,
+                 endAngle: CGFloat(Double.pi) * 0.5,
                  clockwise: false)
         
         c.addArc(center: CGPoint(x: rect.origin.x + radiusAux,
                                  y: rect.origin.y + rect.size.height - radiusAux),
                  radius: radiusAux,
-                 startAngle: CGFloat(M_PI) * 0.5,
-                 endAngle: CGFloat(M_PI),
+                 startAngle: CGFloat(Double.pi) * 0.5,
+                 endAngle: CGFloat(Double.pi),
                  clockwise: false)
         
         c.addLine(to: CGPoint(x: rect.origin.x, y: rect.origin.y + radiusAux))

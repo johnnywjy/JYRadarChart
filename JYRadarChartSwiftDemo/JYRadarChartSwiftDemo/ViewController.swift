@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         p.data = [a, b, c]
         p.steps = Int(arc4random() % 6) + 1
         p.isFillArea = arc4random() % 2 == 0 ? true : false
-        p.isDrawPoints = arc4random() % 2  == 0 ? true : false
+        p.isDrawPoints = arc4random() % 2 == 0 ? true : false
         p.isShowStepText = arc4random() % 2 == 0 ? true : false
         p.titles = ["iPhone", "pizza", "hard drive"]
         p.setNeedsDisplay()

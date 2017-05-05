@@ -148,10 +148,10 @@ class JYRadarChart: UIView {
     
     override func draw(_ rect: CGRect) {
         let colors: Array<UIColor> = legendView.colors
-        var radPerV: CGFloat = CGFloat(M_PI * 2.0) / CGFloat(numOfV)
+        var radPerV: CGFloat = CGFloat(Double.pi * 2.0) / CGFloat(numOfV)
         
         if isClockWise {
-            radPerV =  -(CGFloat(M_PI * 2.0) / CGFloat(numOfV))
+            radPerV = -(CGFloat(Double.pi * 2.0) / CGFloat(numOfV))
         }
         
         let context: CGContext? = UIGraphicsGetCurrentContext()
